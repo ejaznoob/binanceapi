@@ -2911,6 +2911,27 @@ class Binanceapi
 
         return $this->httpRequest("v1/accountSnapshot", 'GET', $params, true);
     }
+    /**
+     * portfolio - Daily Account Snapshot at 00:00:00 UTC
+     *
+     * @link https://www.postman.com/cloudy-crescent-729386/workspace/tradingbot/request/13718054-76fac531-36f5-4c72-88c3-47baa5a61a15
+     *
+     * @property int $weight 1
+     *
+      * @param string $timestamp (mandatory) Should be unix timestamp
+     *
+     * @return array containing the response
+     * @throws \Exception
+     */
+    public function portfolio($timestamp)
+    {
+        $params = [
+            'sapi' => true,
+            'timestamp' => $timestamp,
+         ];
+
+        return $this->httpRequest("v1/portfolio/account", 'GET', $params, true);
+    }
 
     /**
      * accountStatus - Fetch account status detail.
