@@ -999,9 +999,9 @@ class Binanceapi
      * @return array with error message or array with symbol price
      * @throws \Exception
      */
-    public function price(string $symbol)
-    {
-        $ticker = $this->httpRequest("v3/ticker/price", "GET", ["symbol" => $symbol]);
+    public function price($symbol,$timestamp=null){
+        dd($symbol);
+        $ticker = $this->httpRequest("v3/ticker/price", "GET", ["symbol" => $symbol,"timestamp"=>$timestamp]);
 
         return $ticker['price'];
     }
