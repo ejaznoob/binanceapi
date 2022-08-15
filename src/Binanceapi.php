@@ -1000,7 +1000,8 @@ class Binanceapi
      * @throws \Exception
      */
     public function price($symbol){
-         $ticker = $this->httpRequest("v3/ticker/price", "GET", ["symbol" => $symbol]);
+
+         $ticker = $this->httpRequest("v3/ticker/price", "GET", ["symbol" => strtoupper($symbol)]);
 
         return $ticker['price'];
     }
