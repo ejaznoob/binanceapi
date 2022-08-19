@@ -572,7 +572,7 @@ class Binanceapi
         $params["quoteQty"] = $fromAsset;
          $params["sapi"] = true;
 
-        return $this->httpRequest("v1/bswap/quote", "POST", $params, true);
+        return $this->httpRequest("v1/bswap/quote", "GET", $params, true);
     }
 
     public function allAssets(int $limit = 10000, int $fromOrderId = 0, array $params = [])
