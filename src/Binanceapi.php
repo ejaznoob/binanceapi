@@ -567,14 +567,12 @@ class Binanceapi
     }
     public function getConvertQuote(string $fromAsset, string $toAsset, string $amount, string $wallet_type = "SPOT")
     {
-        $params["fromCoin"] = $fromAsset;
-        $params["requestAmount"] = $amount;
-        $params["requestCoin"] = $fromAsset;
-        $params["toCoin"] = $toAsset;
-        $params["walletType"] = $wallet_type;
-        $params["bapi"] = true;
+        $params["quoteAsset"] = $fromAsset;
+        $params["baseAsset"] = $amount;
+        $params["quoteQty"] = $fromAsset;
+         $params["sapi"] = true;
 
-        return $this->httpRequest("margin/v1/private/new-otc/get-quote", "POST", $params, true);
+        return $this->httpRequest("v1/bswap/quote", "POST", $params, true);
     }
 
     public function allAssets(int $limit = 10000, int $fromOrderId = 0, array $params = [])
