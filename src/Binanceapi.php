@@ -558,6 +558,24 @@ class Binanceapi
         }
         return $this->httpRequest("v3/allOrders", "GET", $params, true);
     }
+    public function convertAsset(string $quoteID)
+    {
+        $params["quoteID"] = $quoteID;
+        $params["bapi"] = true;
+
+        return $this->httpRequest("margin/v1/private/new-otc/execute-quote", "POST", $params, true);
+    }
+    public function getConvertQuote(string $fromAsset, string $toAsset, string $amount, string $wallet_type = "SPOT")
+    {
+        $params["fromCoin"] = $fromAsset;
+        $params["requestAmount"] = $amount;
+        $params["requestCoin"] = $fromAsset;
+        $params["toCoin"] = $toAsset;
+        $params["walletType"] = $wallet_type;
+        $params["bapi"] = true;
+
+        return $this->httpRequest("margin/v1/private/new-otc/get-quote", "POST", $params, true);
+    }
 
     public function allAssets(int $limit = 10000, int $fromOrderId = 0, array $params = [])
     {
@@ -565,6 +583,14 @@ class Binanceapi
         $params["bapi"] = true;
 
         return $this->httpRequest("asset/v2/public/asset/asset/get-all-asset", "GET", $params, true);
+    }
+    public function allBalances(int $limit = 10000, int $fromOrderId = 0, array $params = [])
+    {
+        $params["limit"] = $limit;
+        $params["bapi"] = true;
+        $params["needBalanceDetail"] = true;
+
+        return $this->httpRequest("asset/v2/private/asset-service/wallet/balance?needBalanceDetail=true", "GET", $params, true);
     }
 
     /**
@@ -1132,6 +1158,7 @@ class Binanceapi
         $this->info[$symbol]['firstUpdate'] = $json['lastUpdateId'];
         return $this->depthData($symbol, $json);
     }
+
 
     /**
      * balances get balances for the account assets
