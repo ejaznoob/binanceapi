@@ -590,7 +590,6 @@ class Binanceapi
 
         return $this->httpRequest("asset/v2/public/asset/asset/get-all-asset", "GET", $params, true);
     }
-     ()
     public function convertableAssets()
     {
          $params["sapi"] = true;
