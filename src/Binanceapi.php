@@ -567,11 +567,14 @@ class Binanceapi
     }
     public function getConvertQuote(string $fromAsset, string $toAsset, string $amount, string $wallet_type = "SPOT")
     {
-        $params["quoteAsset"] = $fromAsset;
-        $params["baseAsset"] = $amount;
-        $params["quoteQty"] = $fromAsset;
-         $params["sapi"] = true;
 
+
+         $params=[
+             "quoteAsset"=>$fromAsset,
+             "baseAsset"=>$toAsset,
+             "quoteQty"=>$amount,
+             "sapi"=>true
+         ];
         return $this->httpRequest("v1/bswap/quote", "GET", $params, true);
     }
 
