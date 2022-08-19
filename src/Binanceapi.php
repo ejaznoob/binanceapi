@@ -583,14 +583,15 @@ class Binanceapi
         return $this->httpRequest("v1/bswap/swap", "POST", $params, true);
     }
 
-    public function convertableAssets(int $limit = 10000, int $fromOrderId = 0, array $params = [])
+    public function allAssets(int $limit = 10000, int $fromOrderId = 0, array $params = [])
     {
         $params["limit"] = $limit;
         $params["bapi"] = true;
 
         return $this->httpRequest("asset/v2/public/asset/asset/get-all-asset", "GET", $params, true);
     }
-    public function allAssets()
+     ()
+    public function convertableAssets()
     {
          $params["sapi"] = true;
 
