@@ -594,7 +594,7 @@ class Binanceapi
     {
          $params["sapi"] = true;
 
-        return $this->httpRequest("/v1/asset/dust-btc", "GET", $params, true);
+        return $this->httpRequest("/v1/asset/dust-btc", "POST", $params, true);
     }
     public function allBalances(int $limit = 10000, int $fromOrderId = 0, array $params = [])
     {
