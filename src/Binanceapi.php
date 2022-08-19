@@ -558,13 +558,7 @@ class Binanceapi
         }
         return $this->httpRequest("v3/allOrders", "GET", $params, true);
     }
-    public function convertAsset(string $quoteID)
-    {
-        $params["quoteID"] = $quoteID;
-        $params["bapi"] = true;
 
-        return $this->httpRequest("margin/v1/private/new-otc/execute-quote", "POST", $params, true);
-    }
     public function getConvertQuote(string $fromAsset, string $toAsset, string $amount, string $wallet_type = "SPOT")
     {
 
@@ -576,6 +570,16 @@ class Binanceapi
              "sapi"=>true
          ];
         return $this->httpRequest("v1/bswap/quote", "GET", $params, true);
+    }
+    public function convertAsset(string $fromAsset, string $toAsset, string $amount, string $wallet_type = "SPOT")
+    {
+         $params=[
+             "quoteAsset"=>$fromAsset,
+             "baseAsset"=>$toAsset,
+             "quoteQty"=>$amount,
+             "sapi"=>true
+         ];
+        return $this->httpRequest("v1/bswap/swap", "POST", $params, true);
     }
 
     public function allAssets(int $limit = 10000, int $fromOrderId = 0, array $params = [])
