@@ -638,7 +638,7 @@ class Binanceapi
 
         return $this->httpRequest("v3/myTrades", "GET", $parameters, true);
     }
-    public function trades(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
+    public function myTrades(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
     {
         $parameters = [
             "symbol" => $symbol,
