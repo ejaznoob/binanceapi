@@ -620,7 +620,25 @@ class Binanceapi
      * @return array with error message or array of orderDetails array
      * @throws \Exception
      */
-    public function history(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
+    public function allOrders(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
+    {
+        $parameters = [
+            "symbol" => $symbol,
+            "limit" => $limit,
+        ];
+        if ($fromTradeId > 0) {
+            $parameters["fromId"] = $fromTradeId;
+        }
+        if (isset($startTime)) {
+            $parameters["startTime"] = $startTime;
+        }
+        if (isset($endTime)) {
+            $parameters["endTime"] = $endTime;
+        }
+
+        return $this->httpRequest("v3/myTrades", "GET", $parameters, true);
+    }
+    public function trades(string $symbol, int $limit = 500, int $fromTradeId = -1, int $startTime = null, int $endTime = null)
     {
         $parameters = [
             "symbol" => $symbol,
